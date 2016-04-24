@@ -1,13 +1,13 @@
-<?xml version="1.0" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
 
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="/media/font-awesome/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="/media/default/css/default.css"/>
 <link rel="stylesheet" type="text/css" href="/media/default/css/window.css"/>
 <link rel="stylesheet" type="text/css" href="/media/default/css/MooDialog.css"/>
+<link rel="stylesheet" type="text/css" href="/media/default/css/rework.css"/>
 
 <script type="text/javascript" src="/media/js/mootools-core-1.4.1.js"></script>
 <script type="text/javascript" src="/media/js/mootools-more-1.4.0.1.js"></script>
@@ -81,28 +81,41 @@
 
 		{% block menu %}
 		<li>
-		    <a href="/" title=""><img src="/media/default/img/head-menu-home.png" alt="" /> {{_("Home")}}</a>
+		    <a class="home icon" href="/" title="">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <!--<img src="/media/default/img/head-menu-home.png" alt="" /> -->
+                {{_("Home")}}
+            </a>
 		</li>
 		<li {{ selected('queue') }}>
-		    <a href="/queue/" title=""><img src="/media/default/img/head-menu-queue.png" alt="" /> {{_("Queue")}}</a>
+		    <a class="icon" href="/queue/" title="">
+           <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{_("Queue")}}
+            </a>
 		</li>
 		<li {{ selected('collector') }}>
-		    <a href="/collector/" title=""><img src="/media/default/img/head-menu-collector.png" alt="" /> {{_("Collector")}}</a>
+		    <a class="icon" href="/collector/" title="">
+                <i class="fa fa-archive" aria-hidden="true"></i>
+                {{_("Collector")}}
+            </a>
 		</li>
 		<li {{ selected('downloads') }}>
-		    <a href="/downloads/" title=""><img src="/media/default/img/head-menu-development.png" alt="" /> {{_("Downloads")}}</a>
+		    <a class="icon" href="/downloads/" title="">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                {{_("Downloads")}}
+            </a>
 		</li>
 {#		<li {{ selected('filemanager') }}>#}
-{#		    <a href="/filemanager/" title=""><img src="/media/default/img/head-menu-download.png" alt="" /> {{_("FileManager")}}</a>#}
+{#		    <a class="icon" href="/filemanager/" title=""><img src="/media/default/img/head-menu-download.png" alt="" /> {{_("FileManager")}}</a>#}
 {#		</li>#}
 		<li {{ selected('logs', True) }}>
-		    <a href="/logs/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-index.png" alt="" />{{_("Logs")}}</a>
+		    <a class="icon" href="/logs/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-index.png" alt="" />{{_("Logs")}}</a>
 		</li>
 		<li {{ selected('settings', True) }}>
-		    <a href="/settings/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-config.png" alt="" />{{_("Config")}}</a>
+		    <a class="icon" href="/settings/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-config.png" alt="" />{{_("Config")}}</a>
 		</li>
 		{% endblock %}
-		
+
 		</ul>
 	</div>
 
@@ -136,13 +149,15 @@
 
 <div id="content" lang="en" dir="ltr">
 
-<h1>{% block subtitle %}pyLoad - {{_("Webinterface")}}{% endblock %}</h1>
+	<div id="login-header">
+	<img id="login-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" />
+	<h1>{% block subtitle %}pyLoad - {{_("Webinterface")}}{% endblock %}</h1>
+	</div>
 
+	<hr>
 {% block statusbar %}
 {% endblock %}
 
-
-<br/>
 
 <div class="level1" style="clear:both">
 </div>
@@ -152,17 +167,17 @@
 	<b><p>{{message}}</p></b>
 {% endfor %}
 
-<div id="load-indicator" style="opacity: 0; float: right; margin-top: -10px;">
-    <img src="/media/default/img/ajax-loader.gif" alt="" style="padding-right: 5px"/>
-    {{_("loading")}}
-</div>
+<!--<div id="load-indicator" style="opacity: 0; float: right; margin-top: -10px;">-->
+    <!--<img src="/media/default/img/ajax-loader.gif" alt="" style="padding-right: 5px"/>-->
+    <!--{{_("loading")}}-->
+<!--</div>-->
 
 {% block content %}
 {% endblock content %}
 
 	<hr style="clear: both;" />
 
-<div id="foot">&copy; 2008-2011 pyLoad Team
+<div id="foot">&copy; 2016 pyLoad Team & msz
 <a href="#top" class="action top" accesskey="x"><span>{{_("Back to top")}}</span></a><br />
 <!--<div class="breadcrumbs"></div>-->
 

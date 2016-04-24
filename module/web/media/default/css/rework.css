@@ -1,0 +1,122 @@
+/* yellow: #ffd43b */
+/* blue: #2f6998 */
+
+/*
+
+** TODOS **
+
+- replace icons with fontawesome
+- remove gradiants of header
+
+
+*/
+
+
+/*******************************
+    Fonts
+*******************************/
+
+h1, h2, h3, h4, h5, h6 {
+    border: none;
+}
+
+
+/*******************************
+    Font Awesome
+***/
+
+
+
+/*******************************
+    Basic Layout
+*******************************/
+
+div#body-wrapper {
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+form {
+    display: block;
+}
+
+div#content {
+    margin-top: 0;
+}
+
+/*******************************
+    Header Menu
+***/
+#head-panel {
+    background: #2f6998 url(/media/img/header-bg.jpg) bottom left repeat-x;
+}
+
+#head-menu ul li a, #head-menu ul li a:link {
+    background: #ffffff;
+    border-radius: 0;
+    border: 1px #000000 solid;
+}
+
+#head-menu ul li a:hover, #head-menu ul li a:focus {
+    padding-bottom: 3px;
+}
+
+#head-menu .icon {
+    max-height: 30px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    box-sizing: border-box;
+
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+/*******************************
+    Forms & Login
+*******************************/
+
+#login {
+    padding: 10px 0px 20px 0;
+}
+
+#login-logo {
+    display: block;
+    margin: 0 auto;
+}
+
+#login-header {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.logform {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.logform .input-row {
+}
+
+.logform .button {
+    background: #ffd43b;
+    border: 1px #000000 solid;
+    color: #000000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.logform .button:hover {
+    background: #ffe772;
+}
+
+.logform .login-field {
+    margin-bottom: 5px;
+    border: 1px #000000 solid;
+}
