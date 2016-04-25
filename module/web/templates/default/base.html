@@ -66,10 +66,13 @@
 {% endif %}
 
     {% endblock %}
+
+
 	</div>
 
 	<a href="/"><img id="head-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" /></a>
 
+    {% if user.is_authenticated %}
 	<div id="head-menu">
 		<ul>
 
@@ -89,9 +92,9 @@
 		</li>
 		<li {{ selected('queue') }}>
 		    <a class="icon" href="/queue/" title="">
-           <i class="fa fa-clock-o" aria-hidden="true"></i>
-            {{_("Queue")}}
-            </a>
+            	<i class="fa fa-clock-o" aria-hidden="true"></i>
+				{{_("Queue")}}
+			</a>
 		</li>
 		<li {{ selected('collector') }}>
 		    <a class="icon" href="/collector/" title="">
@@ -109,15 +112,22 @@
 {#		    <a class="icon" href="/filemanager/" title=""><img src="/media/default/img/head-menu-download.png" alt="" /> {{_("FileManager")}}</a>#}
 {#		</li>#}
 		<li {{ selected('logs', True) }}>
-		    <a class="icon" href="/logs/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-index.png" alt="" />{{_("Logs")}}</a>
+		    <a class="icon" href="/logs/"  class="action index" accesskey="x" rel="nofollow">
+                <i class="fa fa-file-text" aria-hidden="true"></i>
+				{{_("Logs")}}
+			</a>
 		</li>
 		<li {{ selected('settings', True) }}>
-		    <a class="icon" href="/settings/"  class="action index" accesskey="x" rel="nofollow"><img src="/media/default/img/head-menu-config.png" alt="" />{{_("Config")}}</a>
+		    <a class="icon" href="/settings/"  class="action index" accesskey="x" rel="nofollow">
+			    <i class="fa fa-cog" aria-hidden="true"></i>
+                {{_("Config")}}
+			</a>
 		</li>
 		{% endblock %}
 
 		</ul>
 	</div>
+    {% endif %}
 
 	<div style="clear:both;"></div>
 </div>
