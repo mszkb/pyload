@@ -70,7 +70,11 @@
 
 	</div>
 
-	<a href="/"><img id="head-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" /></a>
+    {#  Hide Logo right top if not authenticated.
+        Pyload logo is already above login form #}
+    {% if user.is_authenticated %}
+        <a href="/"><img id="head-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" /></a>
+    {% endif %}
 
     {% if user.is_authenticated %}
 	<div id="head-menu">
@@ -132,24 +136,7 @@
 	<div style="clear:both;"></div>
 </div>
 
-{% if perms.STATUS %}
-<ul id="page-actions2">
-	<li id="action_play"><a href="#"  class="action play" accesskey="o" rel="nofollow">{{_("Start")}}</a></li>
-    <li id="action_stop"><a href="#"  class="action stop" accesskey="o" rel="nofollow">{{_("Stop")}}</a></li>
-    <li id="action_cancel"><a href="#"  class="action cancel" accesskey="o" rel="nofollow">{{_("Cancel")}}</a></li>
-    <li id="action_add"><a href="#"  class="action add" accesskey="o" rel="nofollow" >{{_("Add")}}</a></li>
-</ul>
-{% endif %}
 
-{% if perms.LIST %}
-<ul id="page-actions">
-    <li><span class="time">{{_("Download:")}}</span><a id="time" style=" background-color: {% if status.download %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.download %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
-    <li><span class="reconnect">{{_("Reconnect:")}}</span><a id="reconnect" style=" background-color: {% if status.reconnect %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.reconnect %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
-    <li><a class="action backlink">{{_("Speed:")}} <b id="speed">{{ status.speed }}</b></a></li>
-    <li><a class="action cog">{{_("Active:")}} <b id="aktiv" title="{{_("Active")}}">{{ status.active }}</b> / <b id="aktiv_from" title="{{_("Queued")}}">{{ status.queue }}</b> / <b id="aktiv_total" title="{{_("Total")}}">{{ status.total }}</b></a></li>
-    <li><a href=""  class="action revisions" accesskey="o" rel="nofollow">{{_("Reload page")}}</a></li>
-</ul>
-{% endif %}
 
 {% block pageactions %}
 {% endblock %}
@@ -158,9 +145,60 @@
 <div id="body-wrapper" class="dokuwiki">
 
 <div id="content" lang="en" dir="ltr">
+    <div id="control">
+    {% if perms.STATUS %}
+    <ul id="page-actions2" class="download-control">
+        <li id="action_play">
+            <a href="#"  class="action" accesskey="o" rel="nofollow">
+                <i class="fa fa-play" aria-hidden="true"></i>
+                {{_("Start")}}
+            </a>
+        </li>
+        <li id="action_stop">
+            <a href="#"  class="action" accesskey="o" rel="nofollow">
+                <i class="fa fa-stop" aria-hidden="true"></i>
+                {{_("Stop")}}
+            </a>
+        </li>
+        <li id="action_cancel">
+            <a href="#"  class="action" accesskey="o" rel="nofollow">
+                <i class="fa fa-remove" aria-hidden="true"></i>
+                {{_("Cancel")}}
+            </a>
+        </li>
+        <li id="action_add">
+            <a href="#"  class="action" accesskey="o" rel="nofollow" >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{_("Add")}}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
 
-	<div id="login-header">
-	<img id="login-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" />
+    {% if perms.LIST %}
+    <ul id="page-actions" class="status-view">
+        <li><span class="time">{{_("Download:")}}</span><a id="time" style=" background-color: {% if status.download %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.download %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
+        <li><span class="reconnect">{{_("Reconnect:")}}</span><a id="reconnect" style=" background-color: {% if status.reconnect %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.reconnect %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
+        <li><a class="action backlink">{{_("Speed:")}} <b id="speed">{{ status.speed }}</b></a></li>
+        <li>
+            <a class="action cog">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                {{_("Active:")}}
+                <b id="aktiv" title="{{_("Active")}}">{{ status.active }}</b> / <b id="aktiv_from" title="{{_("Queued")}}">{{ status.queue }}</b> / <b id="aktiv_total" title="{{_("Total")}}">{{ status.total }}</b>
+            </a>
+        </li>
+        <li><a href=""  class="action revisions" accesskey="o" rel="nofollow">{{_("Reload page")}}</a></li>
+    </ul>
+    {% endif %}
+    </div>
+
+    {% if not user.is_authenticated %}
+        <div id="login-header">
+        <img id="login-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" />
+    {% else %}
+        <div id="section-header">
+    {% endif %}
+
 	<h1>{% block subtitle %}pyLoad - {{_("Webinterface")}}{% endblock %}</h1>
 	</div>
 

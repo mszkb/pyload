@@ -90,9 +90,41 @@ div#content {
     /*color: #2f6998;*/
 }
 
+#head-menu ul li {
+    margin-left: 0;
+}
+
+#head-menu ul li{
+    margin-right: 5px;
+}
+
+#head-menu ul .right {
+    margin-right: auto;
+    margin-left: 5px;
+}
+
 div#head-search-and-login {
     border-radius: 0;
 }
+
+/*******************************
+    Control Menu
+***/
+
+#control {
+    overflow: hidden;
+}
+
+#control > ul {
+    margin: 0;
+    border-radius: 0;
+}
+
+#control ul.download-control .action {
+    padding-left: 0;
+}
+
+.a.cog { background: none }
 
 /*******************************
     Forms & Login
