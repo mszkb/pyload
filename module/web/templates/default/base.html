@@ -1,243 +1,277 @@
 <!DOCTYPE html>
 <head>
 
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" type="text/css" href="/media/font-awesome/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" href="/media/default/css/default.css"/>
-<link rel="stylesheet" type="text/css" href="/media/default/css/window.css"/>
-<link rel="stylesheet" type="text/css" href="/media/default/css/MooDialog.css"/>
-<link rel="stylesheet" type="text/css" href="/media/default/css/rework.css"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/media/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/default/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/default/css/window.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/default/css/MooDialog.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/default/css/rework.css"/>
 
-<script type="text/javascript" src="/media/js/mootools-core-1.4.1.js"></script>
-<script type="text/javascript" src="/media/js/mootools-more-1.4.0.1.js"></script>
-<script type="text/javascript" src="/media/js/MooDialog_static.js"></script>
-<script type="text/javascript" src="/media/js/purr_static.js"></script>
+    <script type="text/javascript" src="/media/js/mootools-core-1.4.1.js"></script>
+    <script type="text/javascript" src="/media/js/mootools-more-1.4.0.1.js"></script>
+    <script type="text/javascript" src="/media/js/MooDialog_static.js"></script>
+    <script type="text/javascript" src="/media/js/purr_static.js"></script>
 
 
-<script type="text/javascript" src="/media/js/base.js"></script>
+    <script type="text/javascript" src="/media/js/base.js"></script>
 
-<title>{% block title %}pyLoad {{_("Webinterface")}}{% endblock %}</title>
+    <title>{% block title %}pyLoad {{ _("Webinterface") }}{% endblock %}</title>
 
-{% block head %}
-{% endblock %}
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
-<a class="anchor" name="top" id="top"></a>
+<div id="page-wrap"> <!-- page-wrap -->
+    <div id="header-wrapper"> <!-- header-wrap -->
 
-<div id="head-panel">
+        <a class="anchor" name="top" id="top"></a>
 
-
-    <div id="head-search-and-login">
-    {% block headpanel %}
-
-        {% if user.is_authenticated %}
+        <div id="head-panel">
 
 
-{% if update %}
-<span>
-<span style="font-weight: bold; margin: 0 2px 0 2px;">{{_("pyLoad Update available!")}}</span>
+            <div id="head-search-and-login">
+                {% block headpanel %}
+
+                    {% if user.is_authenticated %}
+
+
+                        {% if update %}
+                            <span>
+<span style="font-weight: bold; margin: 0 2px 0 2px;">{{ _("pyLoad Update available!") }}</span>
 </span>
-{% endif %}
+                        {% endif %}
 
 
-{% if plugins %}
-<span>
-<span style="font-weight: bold; margin: 0 2px 0 2px;">{{_("Plugins updated, please restart!")}}</span>
+                        {% if plugins %}
+                            <span>
+<span style="font-weight: bold; margin: 0 2px 0 2px;">{{ _("Plugins updated, please restart!") }}</span>
 </span>
-{% endif %}
+                        {% endif %}
 
-<span id="cap_info" style="display: {% if captcha %}inline{%else%}none{% endif %}">
-<img src="/media/default/img/images.png" alt="Captcha:" style="vertical-align:middle; margin:2px" />
-<span style="font-weight: bold; cursor: pointer; margin-right: 2px;">{{_("Captcha waiting")}}</span>
+                        <span id="cap_info" style="display: {% if captcha %}inline{% else %}none{% endif %}">
+<img src="/media/default/img/images.png" alt="Captcha:" style="vertical-align:middle; margin:2px"/>
+<span style="font-weight: bold; cursor: pointer; margin-right: 2px;">{{ _("Captcha waiting") }}</span>
 </span>
 
-    <img src="/media/default/img/head-login.png" alt="User:" style="vertical-align:middle; margin:2px" /><span style="padding-right: 2px;">{{user.name}}</span>
-	<ul id="user-actions">
-		<li><a href="/logout"  class="action logout" rel="nofollow">{{_("Logout")}}</a></li>
-		{% if user.is_admin %}
-		<li><a href="/admin" class="action profile" rel="nofollow">{{_("Administrate")}}</a></li>
-		{% endif %}
-        <li><a href="/info"  class="action info" rel="nofollow">{{_("Info")}}</a></li>
+                        <img src="/media/default/img/head-login.png" alt="User:"
+                             style="vertical-align:middle; margin:2px"/>
+                        <span style="padding-right: 2px;">{{ user.name }}</span>
+                        <ul id="user-actions">
+                            <li><a href="/logout" class="action logout" rel="nofollow">{{ _("Logout") }}</a></li>
+                            {% if user.is_admin %}
+                                <li><a href="/admin" class="action profile" rel="nofollow">{{ _("Administrate") }}</a>
+                                </li>
+                            {% endif %}
+                            <li><a href="/info" class="action info" rel="nofollow">{{ _("Info") }}</a></li>
 
-	</ul>
-{% else %}
-    <span style="padding-right: 2px;">{{_("Please Login!")}}</span>
-{% endif %}
+                        </ul>
+                    {% else %}
+                        <span style="padding-right: 2px;">{{ _("Please Login!") }}</span>
+                    {% endif %}
 
-    {% endblock %}
+                {% endblock %}
 
 
-	</div>
+            </div>
 
-    {#  Hide Logo right top if not authenticated.
+            {#  Hide Logo right top if not authenticated.
         Pyload logo is already above login form #}
-    {% if user.is_authenticated %}
-        <a href="/"><img id="head-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" /></a>
-    {% endif %}
+            {% if user.is_authenticated %}
+                <a href="/"><img id="head-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png"
+                                 alt="pyLoad"/></a>
+            {% endif %}
 
-    {% if user.is_authenticated %}
-	<div id="head-menu">
-		<ul>
+            {% if user.is_authenticated %}
+                <div id="head-menu">
+                    <ul>
 
-        {% macro selected(name, right=False) -%}
-            {% if name in url -%}class="{% if right -%}right {% endif %}selected"{%- endif %}
-            {% if not name in url and right -%}class="right"{%- endif %}
-        {%- endmacro %}
-
-
-		{% block menu %}
-		<li>
-		    <a class="home icon" href="/" title="">
-                <i class="fa fa-home" aria-hidden="true"></i>
-                <!--<img src="/media/default/img/head-menu-home.png" alt="" /> -->
-                {{_("Home")}}
-            </a>
-		</li>
-		<li {{ selected('queue') }}>
-		    <a class="icon" href="/queue/" title="">
-            	<i class="fa fa-clock-o" aria-hidden="true"></i>
-				{{_("Queue")}}
-			</a>
-		</li>
-		<li {{ selected('collector') }}>
-		    <a class="icon" href="/collector/" title="">
-                <i class="fa fa-archive" aria-hidden="true"></i>
-                {{_("Collector")}}
-            </a>
-		</li>
-		<li {{ selected('downloads') }}>
-		    <a class="icon" href="/downloads/" title="">
-                <i class="fa fa-download" aria-hidden="true"></i>
-                {{_("Downloads")}}
-            </a>
-		</li>
-{#		<li {{ selected('filemanager') }}>#}
-{#		    <a class="icon" href="/filemanager/" title=""><img src="/media/default/img/head-menu-download.png" alt="" /> {{_("FileManager")}}</a>#}
-{#		</li>#}
-		<li {{ selected('logs', True) }}>
-		    <a class="icon" href="/logs/"  class="action index" accesskey="x" rel="nofollow">
-                <i class="fa fa-file-text" aria-hidden="true"></i>
-				{{_("Logs")}}
-			</a>
-		</li>
-		<li {{ selected('settings', True) }}>
-		    <a class="icon" href="/settings/"  class="action index" accesskey="x" rel="nofollow">
-			    <i class="fa fa-cog" aria-hidden="true"></i>
-                {{_("Config")}}
-			</a>
-		</li>
-		{% endblock %}
-
-		</ul>
-	</div>
-    {% endif %}
-
-	<div style="clear:both;"></div>
-</div>
+                        {% macro selected(name, right=False) -%}
+                            {% if name in url -%}class="{% if right -%}right {% endif %}selected"{%- endif %}
+                            {% if not name in url and right -%}class="right"{%- endif %}
+                        {%- endmacro %}
 
 
+                        {% block menu %}
+                            <li>
+                                <a class="home icon" href="/" title="">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <!--<img src="/media/default/img/head-menu-home.png" alt="" /> -->
+                                    {{ _("Home") }}
+                                </a>
+                            </li>
+                            <li {{ selected('queue') }}>
+                                <a class="icon" href="/queue/" title="">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    {{ _("Queue") }}
+                                </a>
+                            </li>
+                            <li {{ selected('collector') }}>
+                                <a class="icon" href="/collector/" title="">
+                                    <i class="fa fa-archive" aria-hidden="true"></i>
+                                    {{ _("Collector") }}
+                                </a>
+                            </li>
+                            <li {{ selected('downloads') }}>
+                                <a class="icon" href="/downloads/" title="">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    {{ _("Downloads") }}
+                                    {% if perms.LIST %}
+<a id="time"
+                                                                             style=" background-color: {% if status.download %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; ">
+                            {% if status.download %}{{ _("on") }}{% else %}{{ _("off") }}{% endif %}
+                        </a>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            {#		<li {{ selected('filemanager') }}>#}
+                            {#		    <a class="icon" href="/filemanager/" title=""><img src="/media/default/img/head-menu-download.png" alt="" /> {{_("FileManager")}}</a>#}
+                            {#		</li>#}
+                            <li {{ selected('logs', True) }}>
+                                <a class="icon" href="/logs/" class="action index" accesskey="x" rel="nofollow">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                    {{ _("Logs") }}
+                                </a>
+                            </li>
+                            <li {{ selected('settings', True) }}>
+                                <a class="icon" href="/settings/" class="action index" accesskey="x" rel="nofollow">
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                    {{ _("Config") }}
+                                </a>
+                            </li>
+                        {% endblock %}
 
-{% block pageactions %}
-{% endblock %}
-<br/>
+                    </ul>
+                </div>
+            {% endif %}
 
-<div id="body-wrapper" class="dokuwiki">
-
-<div id="content" lang="en" dir="ltr">
-    <div id="control">
-    {% if perms.STATUS %}
-    <ul id="page-actions2" class="download-control">
-        <li id="action_play">
-            <a href="#"  class="action" accesskey="o" rel="nofollow">
-                <i class="fa fa-play" aria-hidden="true"></i>
-                {{_("Start")}}
-            </a>
-        </li>
-        <li id="action_stop">
-            <a href="#"  class="action" accesskey="o" rel="nofollow">
-                <i class="fa fa-stop" aria-hidden="true"></i>
-                {{_("Stop")}}
-            </a>
-        </li>
-        <li id="action_cancel">
-            <a href="#"  class="action" accesskey="o" rel="nofollow">
-                <i class="fa fa-remove" aria-hidden="true"></i>
-                {{_("Cancel")}}
-            </a>
-        </li>
-        <li id="action_add">
-            <a href="#"  class="action" accesskey="o" rel="nofollow" >
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                {{_("Add")}}
-            </a>
-        </li>
-    </ul>
-    {% endif %}
-
-    {% if perms.LIST %}
-    <ul id="page-actions" class="status-view">
-        <li><span class="time">{{_("Download:")}}</span><a id="time" style=" background-color: {% if status.download %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.download %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
-        <li><span class="reconnect">{{_("Reconnect:")}}</span><a id="reconnect" style=" background-color: {% if status.reconnect %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; "> {% if status.reconnect %}{{_("on")}}{% else %}{{_("off")}}{% endif %}</a></li>
-        <li><a class="action backlink">{{_("Speed:")}} <b id="speed">{{ status.speed }}</b></a></li>
-        <li>
-            <a class="action cog">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
-                {{_("Active:")}}
-                <b id="aktiv" title="{{_("Active")}}">{{ status.active }}</b> / <b id="aktiv_from" title="{{_("Queued")}}">{{ status.queue }}</b> / <b id="aktiv_total" title="{{_("Total")}}">{{ status.total }}</b>
-            </a>
-        </li>
-        <li><a href=""  class="action revisions" accesskey="o" rel="nofollow">{{_("Reload page")}}</a></li>
-    </ul>
-    {% endif %}
-    </div>
-
-    {% if not user.is_authenticated %}
-        <div id="login-header">
-        <img id="login-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad" />
-    {% else %}
-        <div id="section-header">
-    {% endif %}
-
-	<h1>{% block subtitle %}pyLoad - {{_("Webinterface")}}{% endblock %}</h1>
-	</div>
-
-	<hr>
-{% block statusbar %}
-{% endblock %}
+            <div style="clear:both;"></div>
+        </div>
 
 
-<div class="level1" style="clear:both">
-</div>
-<noscript><h1>Enable JavaScript to use the webinterface.</h1></noscript>
 
-{% for message in messages %}
-	<b><p>{{message}}</p></b>
-{% endfor %}
 
-<!--<div id="load-indicator" style="opacity: 0; float: right; margin-top: -10px;">-->
-    <!--<img src="/media/default/img/ajax-loader.gif" alt="" style="padding-right: 5px"/>-->
-    <!--{{_("loading")}}-->
-<!--</div>-->
+        <br/>
+    </div>  <!-- header-wrap end -->
+    <div id="body-wrapper" class="dokuwiki">
 
-{% block content %}
-{% endblock content %}
+        <div id="content" lang="en" dir="ltr">  <!-- content -->
+            <div id="control">
+                {% if perms.STATUS %}
+                    <ul id="page-actions2" class="download-control">
+                        <li id="action_play">
+                            <a href="#" class="action" accesskey="o" rel="nofollow">
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                                {{ _("Start") }}
+                            </a>
+                        </li>
+                        <li id="action_stop">
+                            <a href="#" class="action" accesskey="o" rel="nofollow">
+                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                {{ _("Stop") }}
+                            </a>
+                        </li>
+                        <li id="action_cancel">
+                            <a href="#" class="action" accesskey="o" rel="nofollow">
+                                <i class="fa fa-remove" aria-hidden="true"></i>
+                                {{ _("Cancel") }}
+                            </a>
+                        </li>
+                        <li id="action_add">
+                            <a href="#" class="action" accesskey="o" rel="nofollow">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                {{ _("Add") }}
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
 
-	<hr style="clear: both;" />
+                {% if perms.LIST %}
+                    <ul id="page-actions" class="status-view">
+{#                        <li>#}
+{#                            <span class="time">{{ _("Download:") }}</span><a id="time"#}
+{#                                                                             style=" background-color: {% if status.download %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; ">#}
+{#                            {% if status.download %}{{ _("on") }}{% else %}{{ _("off") }}{% endif %}#}
+{#                        </a>#}
+{#                        </li>#}
+                        <li><span class="reconnect">{{ _("Reconnect:") }}</span><a id="reconnect"
+                                                                                   style=" background-color: {% if status.reconnect %}#8ffc25{% else %} #fc6e26{% endif %}; padding-left: 0cm; padding-right: 0.1cm; ">
+                            {% if status.reconnect %}{{ _("on") }}{% else %}{{ _("off") }}{% endif %}</a></li>
+                        <li>
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                            <a class="action backlink">{{ _("Speed:") }}
+                            <b id="speed">{{ status.speed }}</b></a>
+                        </li>
+                        <li>
+                            <a class="action cog">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                {{ _("Active:") }}
+                                <b id="aktiv" title="{{ _("Active") }}">{{ status.active }}</b> / <b id="aktiv_from"
+                                                                                                     title="{{ _("Queued") }}">{{ status.queue }}</b>
+                                / <b id="aktiv_total" title="{{ _("Total") }}">{{ status.total }}</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="action revisions" accesskey="o" rel="nofollow">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                                {{ _("Reload page") }}
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% block pageactions %}
+                {% endblock %}
+            </div>
 
-<div id="foot">&copy; 2016 pyLoad Team & msz
-<a href="#top" class="action top" accesskey="x"><span>{{_("Back to top")}}</span></a><br />
-<!--<div class="breadcrumbs"></div>-->
+            {% if not user.is_authenticated %}
+                <div id="login-header">
+                <img id="login-logo" src="/media/default/img/pyload-logo-edited3.5-new-font-small.png" alt="pyLoad"/>
+            {% else %}
+                <div id="section-header">
+            {% endif %}
 
-</div>
-</div>
-</div>
+            <h1>{% block subtitle %}pyLoad - {{ _("Webinterface") }}{% endblock %}</h1>
+            </div>
 
-<div style="display: none;">
-    {% include "default/window.html" %}
-    {% include "default/captcha.html" %}
-    {% block hidden %}
-    {% endblock %}
-</div>
+            <hr>
+            {% block statusbar %}
+            {% endblock %}
+
+
+            <div class="level1" style="clear:both">
+            </div>
+            <noscript><h1>Enable JavaScript to use the webinterface.</h1></noscript>
+
+            {% for message in messages %}
+                <b><p>{{ message }}</p></b>
+            {% endfor %}
+
+            <!--<div id="load-indicator" style="opacity: 0; float: right; margin-top: -10px;">-->
+            <!--<img src="/media/default/img/ajax-loader.gif" alt="" style="padding-right: 5px"/>-->
+            <!--{{_("loading")}}-->
+            <!--</div>-->
+
+            {% block content %}
+            {% endblock content %}
+
+
+            </div>
+        </div>  <!-- content end -->
+
+        <div id="foot"> <!-- footer -->
+            &copy; 2016 pyLoad Team & msz
+            <a href="#top" class="action top" accesskey="x"><span>{{ _("Back to top") }}</span></a><br/>
+            <!--<div class="breadcrumbs"></div>-->
+        </div> <!-- footer end -->
+
+        <div style="display: none;">
+            {% include "default/window.html" %}
+            {% include "default/captcha.html" %}
+            {% block hidden %}
+            {% endblock %}
+        </div>
+
+    </div>  <!-- page-wrap end -->
 </body>
 </html>

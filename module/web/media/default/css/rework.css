@@ -34,10 +34,32 @@ h1, h2, h3, h4, h5, h6 {
     Basic Layout
 *******************************/
 
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+#page-wrap {
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+}
+
 div#body-wrapper {
+    padding: 0;
+}
+
+#content {
     max-width: 970px;
     margin: 0 auto;
-    padding: 0;
+}
+
+#foot {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
 }
 
 form {
@@ -120,11 +142,28 @@ div#head-search-and-login {
     border-radius: 0;
 }
 
+.reconnect,
+ul#page-actions a,
+#control .time,
+#control #page-actions {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
 #control ul.download-control .action {
     padding-left: 0;
 }
 
-.a.cog { background: none }
+#control #page-actions-more {
+    margin-top: 5px;
+}
+
+.reconnect,
+#page-actions .time,
+a.backlink,
+a.revisions,
+a.cog { background: none }
 
 /*******************************
     Forms & Login
