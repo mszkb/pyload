@@ -129,6 +129,22 @@ div#head-search-and-login {
     border-radius: 0;
 }
 
+#time {
+    max-height: 30px;
+    height: 30px;
+    padding: 0px !important;
+    width: 30px;
+    margin-left: -1px;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    line-height: 30px;
+}
+
+#head-menu ul li.selected a {
+    border-bottom: 1px #000000 solid;
+}
+
 /*******************************
     Control Menu
 ***/

@@ -201,7 +201,13 @@
                         <li>
                             <i class="fa fa-align-left" aria-hidden="true"></i>
                             <a class="action backlink">{{ _("Speed:") }}
-                            <b id="speed">{{ status.speed }}</b></a>
+                            <b id="speed">
+                                {% if status.speed %}
+                                    {{ status.speed }}
+                                {% else %}
+                                    0 B/s
+                                {% endif %}
+                            </b></a>
                         </li>
                         <li>
                             <a class="action cog">
