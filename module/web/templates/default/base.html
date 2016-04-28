@@ -55,16 +55,29 @@
 <span style="font-weight: bold; cursor: pointer; margin-right: 2px;">{{ _("Captcha waiting") }}</span>
 </span>
 
-                        <img src="/media/default/img/head-login.png" alt="User:"
-                             style="vertical-align:middle; margin:2px"/>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span style="padding-right: 2px;">{{ user.name }}</span>
                         <ul id="user-actions">
-                            <li><a href="/logout" class="action logout" rel="nofollow">{{ _("Logout") }}</a></li>
+                            <li>
+                                <a href="/logout" class="action logout" rel="nofollow">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    {{ _("Logout") }}
+                                </a>
+                            </li>
                             {% if user.is_admin %}
-                                <li><a href="/admin" class="action profile" rel="nofollow">{{ _("Administrate") }}</a>
+                                <li>
+                                    <a href="/admin" class="action profile" rel="nofollow">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        {{ _("Administrate") }}
+                                    </a>
                                 </li>
                             {% endif %}
-                            <li><a href="/info" class="action info" rel="nofollow">{{ _("Info") }}</a></li>
+                            <li>
+                                <a href="/info" class="action info" rel="nofollow">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    {{ _("Info") }}
+                                </a>
+                            </li>
 
                         </ul>
                     {% else %}

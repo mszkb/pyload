@@ -145,6 +145,30 @@ div#head-search-and-login {
     border-bottom: 1px #000000 solid;
 }
 
+#head-search-and-login .fa-user {
+    font-size: 15px;
+    color: #2f6998;
+}
+
+div#head-search-and-login {
+    padding-top: 4px;
+    padding-right: 15px;
+}
+
+ul#user-actions {
+    border-radius: 0;
+}
+
+ul#user-actions a {
+    padding-left: 0;
+}
+
+a.info,
+a.profile,
+a.logout {
+    background: none;
+}
+
 /*******************************
     Control Menu
 ***/
