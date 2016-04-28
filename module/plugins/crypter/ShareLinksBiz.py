@@ -11,7 +11,7 @@ from module.plugins.internal.Crypter import Crypter
 class ShareLinksBiz(Crypter):
     __name__    = "ShareLinksBiz"
     __type__    = "crypter"
-    __version__ = "1.24"
+    __version__ = "1.25"
     __status__  = "testing"
 
     __pattern__ = r'http://(?:www\.)?(share-links|s2l)\.biz/(?P<ID>_?\w+)'
@@ -53,9 +53,15 @@ class ShareLinksBiz(Crypter):
 
         #: Extract package links
         pack_links = []
-        pack_links.extend(self.handle_web_links())
-        pack_links.extend(self.handle_containers())
-        pack_links.extend(self.handle_CNL2())
+        for source in ['cnl', 'web', 'dlc']:
+            if source == 'cnl':
+                pack_links.extend(self.handle_CNL2())
+            if source == 'web':
+                pack_links.extend(self.handle_web_links())
+            if source == 'dlc':
+                pack_links.extend(self.handle_containers())
+            if pack_links:
+                break
         pack_links = set(pack_links)
 
         #: Get package info

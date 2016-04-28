@@ -38,7 +38,7 @@ def compute_checksum(local_file, algorithm):
 class Checksum(Addon):
     __name__    = "Checksum"
     __type__    = "hook"
-    __version__ = "0.27"
+    __version__ = "0.29"
     __status__  = "broken"
 
     __config__ = [("activated"     , "bool"              , "Activated"                                            , False  ),
@@ -130,22 +130,26 @@ class Checksum(Addon):
                     data['hash'][key] = data[key]
                     break
 
-            for key in self.algorithms:
-                if key in data['hash']:
-                    checksum = compute_checksum(local_file, key.replace("-", "").lower())
-                    if checksum:
-                        if checksum == data['hash'][key].lower():
-                            self.log_info(_('File integrity of "%s" verified by %s checksum (%s)') %
-                                        (pyfile.name, key.upper(), checksum))
-                            break
+            if len(data['hash']) > 0:
+                for key in self.algorithms:
+                    if key in data['hash']:
+                        checksum = compute_checksum(local_file, key.replace("-", "").lower())
+                        if checksum:
+                            if checksum == data['hash'][key].lower():
+                                self.log_info(_('File integrity of "%s" verified by %s checksum (%s)') %
+                                            (pyfile.name, key.upper(), checksum))
+                                break
+
+                            else:
+                                self.log_warning(_("%s checksum for file %s does not match (%s != %s)") %
+                                               (key.upper(), pyfile.name, checksum, data['hash'][key].lower()))
+                                self.check_failed(pyfile, local_file, "Checksums do not match")
+
                         else:
-                            self.log_warning(_("%s checksum for file %s does not match (%s != %s)") %
-                                           (key.upper(), pyfile.name, checksum, data['hash'][key].lower()))
-                            self.check_failed(pyfile, local_file, "Checksums do not match")
-                    else:
-                        self.log_warning(_("Unsupported hashing algorithm"), key.upper())
-            else:
-                self.log_warning(_("Unable to validate checksum for file: ") + pyfile.name)
+                            self.log_warning(_("Unsupported hashing algorithm"), key.upper())
+
+                else:
+                    self.log_warning(_('Unable to validate checksum for file: "%s"') % pyfile.name)
 
 
     def check_failed(self, pyfile, local_file, msg):
@@ -153,7 +157,7 @@ class Checksum(Addon):
         if check_action == "retry":
             max_tries = self.config.get('max_tries')
             retry_action = self.config.get('retry_action')
-            if pyfile.plugin.retries < max_tries:
+            if all(_r < max_tries for _id, _r in pyfile.plugin.retries.items()):
                 if local_file:
                     os.remove(local_file)
                 pyfile.plugin.retry(max_tries, self.config.get('wait_time'), msg)
