@@ -1,3 +1,4 @@
 /.idea
 *.pyc
 start_web
+module/web/media/js/base_dev.js
